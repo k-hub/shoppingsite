@@ -92,7 +92,7 @@ def get_by_id(id):
     """Return a melon, given its ID."""
 
     # This relies on access to the global dictionary `melon_types`
-    # a = get_by_id(59)
+
     return melon_types[id]
 
 

@@ -70,7 +70,12 @@ def shopping_cart():
     #   - keep track of the total amt ordered for a melon-type
     #   - keep track of the total amt of the entire order
     # - hand to the template the total order cost and the list of melon types
+    for id in session.values():
+        melon_info = melons.get_by_id(id)
 
+    # melon = melons.get_by_id(melon_id)
+
+    # raise Exception("Fix me")     
     return render_template("cart.html")
 
 
@@ -81,30 +86,22 @@ def add_to_cart(id):
     When a melon is added to the cart, redirect browser to the shopping cart
     page and display a confirmation message: 'Successfully added to cart'.
     """
-    # session = {}
+
     # TODO: Finish shopping cart functionality
 
     # The logic here should be something like:
     #
     # - add the id of the melon they bought to the cart in the session
 
-
-    # if "cart" in session:
-    #     print session["cart"],
-    #     print session 
-    #     return session["cart"]
-    # # else:
-    # #     return "Oops! This needs to be implemented!"
-
     
     session.setdefault("cart", []).append(str(id))  # If cart is not a key in session, then create that key with an empty list value. Everytime we add something new to the cart, append the id to the list.
-    flash("Successfully added to cart!")
+
 
     orders = ", ".join(session["cart"])  # Items in list must be returned back as string.
+    
+    flash("Successfully added to cart!")
+    return  redirect("/cart")
 
-    # raise Exception("Fix me")
-
-    return orders                      
 
 @app.route("/login", methods=["GET"])
 def show_login():
